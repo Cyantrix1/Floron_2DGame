@@ -19,7 +19,7 @@ public class Entity {
     // show the images
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
     // direction string
-    public String Direction;
+    public String Direction = "down";
 
     // these two are to simulate movement while idle
     public int spriteCounter = 0;
@@ -28,8 +28,14 @@ public class Entity {
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
     public int actionLockCounter = 0;
+    public boolean invincible = false;
+    public int invincibleCounter = 0;
     String dialogues[] = new String[20];
     int dialogueIndex = 0;
+    public BufferedImage image, image1, image2;
+    public String name;
+    public boolean collision = false;
+    public int type; // 0 = player 1 = npc 2 = monster
 
     // life
     public int maxLife;
@@ -73,7 +79,16 @@ public class Entity {
         collisionOn = false;
         gp.cChecker.checkTile(this);
         gp.cChecker.checkObject(this, false);
-        gp.cChecker.checkPlayer(this);
+        gp.cChecker.checkEntity(this, gp.npc);
+        gp.cChecker.checkEntity(this, gp.monster);
+        boolean contactPlayer = gp.cChecker.checkPlayer(this);
+        if(this.type == 2 && contactPlayer == true){
+            if(gp.player.invincible == false){
+                //we can give damage
+                gp.player.life -= 1;
+                gp.player.invincible = true;
+            }
+        }
 
         if (collisionOn == false) {
             switch(Direction){

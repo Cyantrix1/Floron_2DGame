@@ -131,6 +131,11 @@ public class KeyHandler implements KeyListener {
                 enterPressed = true;
             }
         }
+        else if(gp.gameState == gp.pauseState){
+            if(code == KeyEvent.VK_P){
+                gp.gameState = gp.playState;
+            }
+        }
         //DEBUG STATE
         if(code == KeyEvent.VK_T){
             if(checkDrawTime == false){
@@ -138,13 +143,6 @@ public class KeyHandler implements KeyListener {
             }
             else if(checkDrawTime == true){
                 checkDrawTime = false;
-            }
-        }
-
-        // PAUSE STATE
-        else if(gp.gameState == gp.pauseState){
-            if (code == KeyEvent.VK_P) {
-                gp.gameState = gp.playState;
             }
         }
         // DIALOGUE STATE
@@ -159,21 +157,17 @@ public class KeyHandler implements KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
         int code = e.getKeyCode();
-
         if(code == KeyEvent.VK_W || code == KeyEvent.VK_UP){
             upPressed = false;
         }
         if(code == KeyEvent.VK_A || code == KeyEvent.VK_LEFT){
             leftPressed = false;
-
         }
         if(code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN){
             downPressed = false;
-
         }
         if(code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT){
             rightPressed = false;
-
         }
     }
 }

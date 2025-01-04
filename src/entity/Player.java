@@ -33,9 +33,6 @@ public class Player extends Entity{
         setDefaultValues();
         // get player image
         getPlayerImage();
-
-
-
     }
 
     // get player image
@@ -71,7 +68,8 @@ public class Player extends Entity{
 
         // could add an if(keyH.upPressed == true || etc...etc...etc... if you want the sprite not to move
 
-        if(keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true || keyH.rightPressed == true){
+        if(keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true || keyH.rightPressed == true
+        || keyH.enterPressed == true){
             if(keyH.upPressed == true){
                 Direction = "up";
             }
@@ -96,27 +94,24 @@ public class Player extends Entity{
             int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
             interactNPC(npcIndex);
 
+            // CHECK  MONSTER COLLISION
+            int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
+            contactMonster(monsterIndex);
             // CHECK EVENT
             gp.eHandler.checkEvent();
 
-            gp.keyH.enterPressed = false;
 
-            if (collisionOn == false) {
+
+            if (collisionOn == false && keyH.enterPressed == false) {
                 switch(Direction){
-                    case "up":
-                        worldY -= speed;
-                        break;
-                    case "down":
-                        worldY += speed;
-                        break;
-                    case "left":
-                        worldX -= speed;
-                        break;
-                    case "right":
-                        worldX += speed;
-                        break;
+                    case "up": worldY -= speed;break;
+                    case "down": worldY += speed;break;
+                    case "left": worldX -= speed;break;
+                    case "right": worldX += speed;break;
                 }
             }
+
+            gp.keyH.enterPressed = false;
 
             spriteCounter++;
             if(spriteCounter > 12){
@@ -127,6 +122,14 @@ public class Player extends Entity{
                     spriteNum =1;
                 }
                 spriteCounter = 0;
+            }
+        }
+        // This needs to be oustide of key if statement!
+        if (invincible == true){
+            invincibleCounter++;
+            if(invincibleCounter > 60){
+                invincible = false;
+                invincibleCounter = 0;
             }
         }
 
@@ -144,6 +147,15 @@ public class Player extends Entity{
             }
         }
 
+    }
+    public void contactMonster(int i){
+        if(i != 999){
+            if(invincible == false){
+                life -= 1;
+                invincible = true;
+            }
+
+        }
     }
     public void draw(Graphics2D g2){
 
@@ -191,12 +203,28 @@ public class Player extends Entity{
                 }
                 break;
         }
+        // make player a little transparaent when invincible
+        if(invincible ==true){
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+        }
 
         g2.drawImage(image, screenX, screenY, null);
+
+        // reset the transparaencey
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+
         // SHOW COLLISION RECT
         g2.setColor(Color.red);
         g2.drawRect(screenX+solidArea.x, screenY+solidArea.y, solidArea.width, solidArea.height);
-        }
+
+        //DEBUG (invincible)
+        //g2.setFont(new Font("Arial", Font.PLAIN, 26));
+        //g2.setColor(Color.white);
+        //g2.drawString("Invincible:" + invincibleCounter, 10, 400);
+
+    }
+
+
 
 
     }

@@ -1,13 +1,10 @@
 package main;
 
+import entity.Entity;
 import objects.OBJ_Heart;
-import objects.OBJ_Key;
-import objects.SuperObject;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.text.DecimalFormat;
-
 
 
 public class UI {
@@ -31,7 +28,7 @@ public class UI {
         arial_80B = new Font("Arial", Font.BOLD, 80);
 
         // CREATE HUD
-        SuperObject heart = new OBJ_Heart(gp);
+        Entity heart = new OBJ_Heart(gp);
         heart_full = heart.image;
         heart_half = heart.image1;
         empty_heart = heart.image2;
@@ -73,9 +70,6 @@ public class UI {
 
     }
     public void drawPlayerLife(){
-
-
-
         int x = gp.tileSize/2;
         int y = gp.tileSize/2;
         int i = 0;

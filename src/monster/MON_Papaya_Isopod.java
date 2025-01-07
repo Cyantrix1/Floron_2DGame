@@ -6,9 +6,10 @@ import main.GamePanel;
 import java.util.Random;
 
 public class MON_Papaya_Isopod extends Entity {
-
+    GamePanel gp;
     public MON_Papaya_Isopod(GamePanel gp) {
         super(gp);
+        this.gp = gp;
         type = 2;
         name = "Papaya Isopod";
         speed = 1;
@@ -28,14 +29,14 @@ public class MON_Papaya_Isopod extends Entity {
     }
 
     public void getImage() {
-        up1 = setUp("monster/Papaya_Isopod_Idle_Normal");
-        up2 = setUp("monster/Papaya_Isopod_Idle_Normal_1");
-        down1 = setUp("monster/Papaya_Isopod_Idle_Normal");
-        down2 = setUp("monster/Papaya_Isopod_Idle_Normal_1");
-        right1 = setUp("monster/Papaya_Isopod_Idle_Normal");
-        right2 = setUp("monster/Papaya_Isopod_Idle_Normal_1");
-        left1 = setUp("monster/Papaya_Isopod_Idle_Normal");
-        left2 = setUp("monster/Papaya_Isopod_Idle_Normal_1");
+        up1 = setUp("monster/Papaya_Isopod_Idle_Normal", gp.tileSize, gp.tileSize);
+        up2 = setUp("monster/Papaya_Isopod_Idle_Normal_1", gp.tileSize, gp.tileSize);
+        down1 = setUp("monster/Papaya_Isopod_Idle_Normal", gp.tileSize, gp.tileSize);
+        down2 = setUp("monster/Papaya_Isopod_Idle_Normal_1", gp.tileSize, gp.tileSize);
+        right1 = setUp("monster/Papaya_Isopod_Idle_Normal", gp.tileSize, gp.tileSize);
+        right2 = setUp("monster/Papaya_Isopod_Idle_Normal_1", gp.tileSize, gp.tileSize);
+        left1 = setUp("monster/Papaya_Isopod_Idle_Normal", gp.tileSize, gp.tileSize);
+        left2 = setUp("monster/Papaya_Isopod_Idle_Normal_1", gp.tileSize, gp.tileSize);
     }
 
     public void setAction() {

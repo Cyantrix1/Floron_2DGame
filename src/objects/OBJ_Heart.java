@@ -12,9 +12,9 @@ public class OBJ_Heart extends Entity {
     public OBJ_Heart(GamePanel gp){
         super(gp);
         name = "Heart";
-        image =setUp("objects/Full_Heart");
-        image1 = setUp("objects/Half_Heart");
-        image2 = setUp("objects/Empty_heart");
+        image =setUp("objects/Full_Heart", gp.tileSize, gp.tileSize);
+        image1 = setUp("objects/Half_Heart", gp.tileSize, gp.tileSize);
+        image2 = setUp("objects/Empty_heart", gp.tileSize, gp.tileSize);
 
     }
 

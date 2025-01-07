@@ -22,20 +22,57 @@ public class TileManager {
 
     public TileManager(GamePanel gp) {
         this.gp = gp;
-        tile = new Tile[10];
+        tile = new Tile[40];
         mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
         getTileImage();
-        loadMap("maps/Floron_TileMap.txt");
+        loadMap("maps/New_Map.txt");
 
     }
 
     public void getTileImage() {
 
-            setUp(0, "Grass", false);
-            setUp(1, "water", true);
-            setUp(2, "wall", true);
-            setUp(3, "Tree", true);
-            setUp(4, "Dirt", false);
+            setUp(0, "Dirt", false);
+            setUp(1, "earth", false);
+            setUp(2, "floor01", false);
+            setUp(3, "Grass", false);
+            setUp(4, "grass00", false);
+            setUp(5, "grass01", false);
+        setUp(6, "hut", true);
+        setUp(7, "road00", false);
+        setUp(8, "road01", false);
+        setUp(9, "road02", false);
+        setUp(10, "road03", false);
+        setUp(11, "road04", false);
+        setUp(12, "road05", false);
+        setUp(13, "road06", false);
+        setUp(14, "road07", false);
+        setUp(15, "road08", false);
+        setUp(16, "road09", false);
+        setUp(17, "road10", false);
+        setUp(18, "road11", false);
+        setUp(19, "road12", false);
+        setUp(20, "table01", true);
+        setUp(21, "Tree", true);
+        setUp(22, "wall", true);
+        setUp(23, "water", true);
+        setUp(24, "water00", true);
+        setUp(25, "water01", true);
+        setUp(26, "water02", true);
+        setUp(27, "water03", true);
+        setUp(28, "water04", true);
+        setUp(29, "water05", true);
+        setUp(30, "water06", true);
+        setUp(31, "water07", true);
+        setUp(32, "water08", true);
+        setUp(33, "water09", true);
+        setUp(34, "water10", true);
+        setUp(35, "water11", true);
+        setUp(36, "water12", true);
+        setUp(37, "water13", true);
+
+
+
+
 
     }
 

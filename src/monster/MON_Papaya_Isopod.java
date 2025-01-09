@@ -15,6 +15,9 @@ public class MON_Papaya_Isopod extends Entity {
         speed = 1;
         maxLife = 4;
         life = maxLife;
+        attack = 5;
+        defense = 0;
+        exp = 2;
 
         solidArea.x = 3;
         solidArea.y = 18;
@@ -67,5 +70,9 @@ public class MON_Papaya_Isopod extends Entity {
             actionLockCounter = 0;
         }
 
+    }
+    public void damageReaction(){
+        actionLockCounter = 0;
+        Direction = gp.player.Direction;
     }
 }

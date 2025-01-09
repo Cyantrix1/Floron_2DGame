@@ -54,7 +54,9 @@ public class EventHandler {
             if(hit(26,20, "right") == true){ damagePit(26,20, gp.dialogueState);}
 
             // heal
-            if(hit(24, 20, "left") == true){healingPool(24,20,gp.dialogueState);}
+            if(hit(23, 20, "left") == true){
+                healingPool(23,20,gp.dialogueState);
+            }
 
             // TELEPORT
             if(hit(29, 25, "right") == true){teleport(29, 25, gp.dialogueState);}
@@ -95,6 +97,7 @@ public class EventHandler {
 
     public void damagePit(int col, int row, int gameState){
         gp.gameState = gameState;
+        gp.playSoundEffect(4);
         gp.ui.currentDialogue = "You fall into a pit!";
         gp.player.life -= 1;
       //  eventRect[col][row].eventDone = true;
@@ -104,9 +107,12 @@ public class EventHandler {
     public void healingPool(int col, int row, int gameState){
 
         if(gp.keyH.enterPressed == true){
+            gp.player.attackCanceled = true;
             gp.gameState = gameState;
             gp.ui.currentDialogue = "You get FULL life back!";
             gp.player.life = gp.player.maxLife;
+            // reset monsters
+            gp.aSetter.setMonster();
         }
 
     }

@@ -10,6 +10,7 @@ public class OBJ_Key extends Entity {
 
         name = "Key";
         down1 = setUp("objects/key", gp.tileSize, gp.tileSize);
+        description = "[" + name + "]\nA Basic Key";
 
     }
 }

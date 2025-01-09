@@ -15,6 +15,11 @@ public class Sound {
         soundURL[1] = getClass().getClassLoader().getResource("sound/collecting_power_item.wav");
         soundURL[2] = getClass().getClassLoader().getResource("sound/open_sound.wav");
         soundURL[3] = getClass().getClassLoader().getResource("sound/treasure_collect.wav");
+        soundURL[4] = getClass().getClassLoader().getResource("sound/bodyHitLight1.wav");
+        soundURL[5] = getClass().getClassLoader().getResource("sound/bodyHitHard1.wav");
+        soundURL[6] = getClass().getClassLoader().getResource("sound/dullSwoosh1.wav");
+        soundURL[7] = getClass().getClassLoader().getResource("sound/levelUp.wav");
+        soundURL[8] = getClass().getClassLoader().getResource("sound/cursor.wav");
 
     }
 

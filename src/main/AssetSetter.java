@@ -29,12 +29,18 @@ public class AssetSetter {
 
     }
     public void setMonster(){
-        gp.monster[0] = new MON_Papaya_Isopod(gp);
-        gp.monster[0].worldX = gp.tileSize*25;
-        gp.monster[0].worldY = gp.tileSize*21;
+        int i = 0;
+        gp.monster[i] = new MON_Papaya_Isopod(gp);
+        gp.monster[i].worldX = gp.tileSize*25;
+        gp.monster[i].worldY = gp.tileSize*21;
+        i++;
+        gp.monster[i] = new MON_Papaya_Isopod(gp);
+        gp.monster[i].worldX = gp.tileSize*26;
+        gp.monster[i].worldY = gp.tileSize*22;
+        i++;
+        gp.monster[i] = new MON_Papaya_Isopod(gp);
+        gp.monster[i].worldX = gp.tileSize*28;
+        gp.monster[i].worldY = gp.tileSize*22;
 
-        gp.monster[1] = new MON_Papaya_Isopod(gp);
-        gp.monster[1].worldX = gp.tileSize*26;
-        gp.monster[1].worldY = gp.tileSize*22;
     }
 }

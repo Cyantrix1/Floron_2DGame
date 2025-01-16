@@ -2,10 +2,7 @@ package main;
 
 import entity.NPC_Wanderer;
 import monster.MON_Papaya_Isopod;
-import objects.OBJ_Chest;
-import objects.OBJ_Door;
-import objects.OBJ_Fast_Boots;
-import objects.OBJ_Key;
+import objects.*;
 
 public class AssetSetter {
     GamePanel gp;
@@ -15,6 +12,31 @@ public class AssetSetter {
     }
 
     public void setObject(){
+        int i = 0;
+        gp.obj[i] = new OBJ_Key(gp);
+        gp.obj[i].worldX = gp.tileSize*25;
+        gp.obj[i].worldY = gp.tileSize*19;
+        i++;
+        gp.obj[i] = new OBJ_Key(gp);
+        gp.obj[i].worldX = gp.tileSize*26;
+        gp.obj[i].worldY = gp.tileSize*19;
+        i++;
+        gp.obj[i] = new OBJ_Key(gp);
+        gp.obj[i].worldX = gp.tileSize*27;
+        gp.obj[i].worldY = gp.tileSize*19;
+        i++;
+        gp.obj[i] = new OBJ_OP_Axe(gp);
+        gp.obj[i].worldX = gp.tileSize*30;
+        gp.obj[i].worldY = gp.tileSize*19;
+        i++;
+        gp.obj[i] = new OBJ_Blue_Shield(gp);
+        gp.obj[i].worldX = gp.tileSize*31;
+        gp.obj[i].worldY = gp.tileSize*19;
+        i++;
+        gp.obj[i] = new OBJ_Potion_Health(gp);
+        gp.obj[i].worldX = gp.tileSize*32;
+        gp.obj[i].worldY = gp.tileSize*19;
+        i++;
 
     }
 
@@ -23,10 +45,6 @@ public class AssetSetter {
         gp.npc[0] = new NPC_Wanderer(gp);
         gp.npc[0].worldX = gp.tileSize * 27;
         gp.npc[0].worldY = gp.tileSize * 23;
-
-
-
-
     }
     public void setMonster(){
         int i = 0;

@@ -35,8 +35,7 @@ public class Player extends Entity{
         solidArea = new Rectangle(8, 16, 32, 32);
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-        attackArea.width = 36;
-        attackArea.height = 36;
+
 
         // get starting location
         setDefaultValues();
@@ -60,14 +59,27 @@ public class Player extends Entity{
 
     }
     public void getPlayerAttackImage(){
-        attackUp1 = setUp("player/grim_attack_up_1", gp.tileSize, gp.tileSize*2);
-        attackUp2 = setUp("player/grim_attack_up_2", gp.tileSize, gp.tileSize*2);
-        attackDown1 = setUp("player/grim_attack_down_1", gp.tileSize, gp.tileSize*2);
-        attackDown2 = setUp("player/grim_attack_down_2", gp.tileSize, gp.tileSize*2);
-        attackLeft1 = setUp("player/grim_attack_left_1", gp.tileSize*2, gp.tileSize);
-        attackLeft2 = setUp("player/grim_attack_left_2", gp.tileSize*2, gp.tileSize);
-        attackRight1 = setUp("player/grim_attack_right_1", gp.tileSize*2, gp.tileSize);
-        attackRight2 = setUp("player/grim_attack_right_2", gp.tileSize*2, gp.tileSize);
+        if(currentWeapon.type == type_sword){
+            attackUp1 = setUp("player/grim_attack_up_1", gp.tileSize, gp.tileSize*2);
+            attackUp2 = setUp("player/grim_attack_up_2", gp.tileSize, gp.tileSize*2);
+            attackDown1 = setUp("player/grim_attack_down_1", gp.tileSize, gp.tileSize*2);
+            attackDown2 = setUp("player/grim_attack_down_2", gp.tileSize, gp.tileSize*2);
+            attackLeft1 = setUp("player/grim_attack_left_1", gp.tileSize*2, gp.tileSize);
+            attackLeft2 = setUp("player/grim_attack_left_2", gp.tileSize*2, gp.tileSize);
+            attackRight1 = setUp("player/grim_attack_right_1", gp.tileSize*2, gp.tileSize);
+            attackRight2 = setUp("player/grim_attack_right_2", gp.tileSize*2, gp.tileSize);
+        }
+        if(currentWeapon.type == type_axe){
+            attackUp1 = setUp("player/grim_attack_up_1", gp.tileSize, gp.tileSize*2);
+            attackUp2 = setUp("player/grim_attack_up_2", gp.tileSize, gp.tileSize*2);
+            attackDown1 = setUp("player/grim_attack_down_1", gp.tileSize, gp.tileSize*2);
+            attackDown2 = setUp("player/grim_attack_down_2", gp.tileSize, gp.tileSize*2);
+            attackLeft1 = setUp("player/grim_attack_left_1", gp.tileSize*2, gp.tileSize);
+            attackLeft2 = setUp("player/grim_attack_left_2", gp.tileSize*2, gp.tileSize);
+            attackRight1 = setUp("player/grim_attack_right_1", gp.tileSize*2, gp.tileSize);
+            attackRight2 = setUp("player/grim_attack_right_2", gp.tileSize*2, gp.tileSize);
+        }
+
     }
 
 
@@ -101,6 +113,7 @@ public class Player extends Entity{
 
     }
     public int getAttack(){
+        attackArea = currentWeapon.attackArea;
         return attack = strength * currentWeapon.attackValue;
     }
     public int getDefense(){
@@ -228,6 +241,19 @@ public class Player extends Entity{
     public void pickUpObject(int i){
         if(i != 999){
 
+            String text;
+
+            if(inventory.size() != inventorySize){
+                inventory.add(gp.obj[i]);
+                gp.playSoundEffect(1);
+                text = "Got a " + gp.obj[i].name +"!";
+
+            }
+            else{
+                text = "You can't carry anymore!";
+            }
+            gp.ui.addMessage(text);
+            gp.obj[i] = null;
         }
     }
     public void interactNPC(int i){
@@ -246,7 +272,7 @@ public class Player extends Entity{
     }
     public void contactMonster(int i){
         if(i != 999){
-            if(invincible == false){
+            if(invincible == false && gp.monster[i].dying == false){
                 gp.playSoundEffect(5);
                 int damage = gp.monster[i].attack - defense;
                 if(damage < 0){
@@ -297,6 +323,26 @@ public class Player extends Entity{
             gp.playSoundEffect(7);
             gp.gameState = gp.dialogueState;
             gp.ui.currentDialogue = ("You are level " + level + " now!\n");
+        }
+    }
+    public void selectItem(){
+        int itemIndex = gp.ui.getItemIndexOnSlot();
+
+        if(itemIndex < inventory.size()){
+            Entity selectedItem = inventory.get(itemIndex);
+            if(selectedItem.type == type_sword || selectedItem.type == type_axe){
+                currentWeapon = selectedItem;
+                attack=getAttack();
+                getPlayerAttackImage();
+            }
+            if(selectedItem.type == type_shield){
+                currentShield = selectedItem;
+                defense = getDefense();
+            }
+            if(selectedItem.type == type_consumable){
+                selectedItem.use(this);
+                inventory.remove(itemIndex);
+            }
         }
     }
     public void draw(Graphics2D g2){

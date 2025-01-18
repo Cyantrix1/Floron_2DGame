@@ -11,7 +11,7 @@ public class OBJ_Potion_Health extends Entity {
         this.gp=gp;
         type = type_consumable;
         name = "Health Potion";
-        down1 = setUp("objects/health_potion", gp.tileSize, gp.tileSize);
+        down1 = setUp("objects/consumables/health_potion", gp.tileSize, gp.tileSize);
         description = "[" + name + "]\nA Health Potion\nHeals " + value + ".";
     }
     public void use(Entity entity){

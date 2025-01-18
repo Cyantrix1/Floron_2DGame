@@ -9,7 +9,7 @@ public class OBJ_OP_Axe extends Entity{
         super(gp);
         type = type_axe;
         name = "OP Axe";
-        down1 = setUp("objects/OP_Axe", gp.tileSize, gp.tileSize);
+        down1 = setUp("objects/weapons/OP_Axe", gp.tileSize, gp.tileSize);
         attackValue = 5;
         attackArea.width = 30;
         attackArea.height = 30;

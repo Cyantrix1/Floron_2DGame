@@ -11,7 +11,7 @@ public class MON_RubberDucky_Isopod extends Entity {
         super(gp);
         this.gp = gp;
         type = type_monster;
-        name = "Papaya Isopod";
+        name = "Rubber Ducky Isopod";
         speed = 1;
         maxLife = 4;
         life = maxLife;

@@ -2,9 +2,7 @@ package entity;
 import main.GamePanel;
 import main.KeyHandler;
 import main.UtilityTool;
-import objects.OBJ_Key;
-import objects.OBJ_Shield_Wood;
-import objects.OBJ_Sword_Basic;
+import objects.*;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -98,9 +96,14 @@ public class Player extends Entity{
         nextLevelExp = 5;
         coin = 0;
         maxLife = 6;
+        maxMana = 4;
+        ammo = 10;
+        mana = maxMana;
         life = maxLife;
         currentWeapon = new OBJ_Sword_Basic(gp);
         currentShield = new OBJ_Shield_Wood(gp);
+        //projectile = new OBJ_Fireball(gp);
+        projectile = new OBJ_Rock(gp);
         attack = getAttack();
         defense = getDefense();
 
@@ -188,6 +191,20 @@ public class Player extends Entity{
                 spriteCounter = 0;
             }
         }
+        // if key is pressed and projectile one at a time
+        if(gp.keyH.shootKeyPressed == true && projectile.alive == false
+                && shootAvailableCounter == 30 && projectile.haveResource(this) == true){
+            // SET DEFAULT coordinates, direction and user
+            projectile.set(worldX, worldY, Direction, true, this);
+            // SUBTRACT THE COST
+            projectile.subtractResource(this);
+            // add it to the list
+            gp.projectileList.add(projectile);
+
+            shootAvailableCounter = 0;
+            // play fireball soundeffect
+            gp.playSoundEffect(9);
+        }
         // This needs to be oustide of key if statement!
         if (invincible == true){
             invincibleCounter++;
@@ -195,6 +212,9 @@ public class Player extends Entity{
                 invincible = false;
                 invincibleCounter = 0;
             }
+        }
+        if(shootAvailableCounter < 30){
+            shootAvailableCounter++;
         }
 
     }
@@ -225,7 +245,7 @@ public class Player extends Entity{
             solidArea.height = attackArea.height;
             // check monster collision with the updated world X, worldY, and solid area
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
-            damageMonster(monsterIndex);
+            damageMonster(monsterIndex, attack);
             worldX = currentWorldX;
             worldY = currentWorldY;
             solidArea.width = solidAreaWidth;
@@ -284,7 +304,7 @@ public class Player extends Entity{
 
         }
     }
-    public void damageMonster(int i ){
+    public void damageMonster(int i, int attack){
         if(i != 999){
             if(gp.monster[i].invincible == false){
                 gp.playSoundEffect(4);

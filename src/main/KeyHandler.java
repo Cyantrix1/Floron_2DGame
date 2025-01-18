@@ -1,19 +1,13 @@
 package main;
-
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
 // implement key listener (which requires different methods)
 public class KeyHandler implements KeyListener {
-
     GamePanel gp;
     // up/down/left/right
-    public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed;
-
+    public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed, shootKeyPressed;
     //DEBUG
     boolean showDebugText = false;
-
-
     public KeyHandler(GamePanel gp){
         this.gp = gp;
     }
@@ -149,15 +143,12 @@ public class KeyHandler implements KeyListener {
         }
         if (code == KeyEvent.VK_A || code == KeyEvent.VK_LEFT) {
             leftPressed = true;
-
         }
         if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
             downPressed = true;
-
         }
         if (code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT) {
             rightPressed = true;
-
         }
         if (code == KeyEvent.VK_P) {
             gp.gameState = gp.pauseState;
@@ -167,6 +158,9 @@ public class KeyHandler implements KeyListener {
         }
         if(code == KeyEvent.VK_G){
             gp.gameState = gp.characterState;
+        }
+        if(code == KeyEvent.VK_F){
+            shootKeyPressed = true;
         }
     }
     public void pauseState(int code){
@@ -226,6 +220,9 @@ public class KeyHandler implements KeyListener {
         }
         if(code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT){
             rightPressed = false;
+        }
+        if(code == KeyEvent.VK_F){
+            shootKeyPressed = false;
         }
     }
 }

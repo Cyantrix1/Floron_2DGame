@@ -7,7 +7,7 @@ public class OBJ_Blue_Shield extends Entity{
         super(gp);
         type = type_shield;
         name = "Blue Shield";
-        down1 = setUp("objects/Blue_Shield", gp.tileSize, gp.tileSize);
+        down1 = setUp("objects/weapons/Blue_Shield", gp.tileSize, gp.tileSize);
         defenseValue = 2;
         description = "[" + name + "]\nA Blue Shield";
     }

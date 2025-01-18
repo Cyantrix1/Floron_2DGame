@@ -2,6 +2,7 @@ package monster;
 
 import entity.Entity;
 import main.GamePanel;
+import objects.OBJ_Rock;
 
 import java.util.Random;
 
@@ -18,6 +19,7 @@ public class MON_Cappuccino_Isopod extends Entity {
         attack = 10;
         defense = 2;
         exp = 4;
+        projectile = new OBJ_Rock(gp);
 
         solidArea.x = 3;
         solidArea.y = 18;
@@ -58,6 +60,13 @@ public class MON_Cappuccino_Isopod extends Entity {
                 Direction = "right";
             }
             actionLockCounter = 0;
+
+        }
+        int i = new Random().nextInt(100)+1;
+        if (i > 99 && projectile.alive == false && shootAvailableCounter == 30){
+            projectile.set(worldX, worldY, Direction, true, this);
+            gp.projectileList.add(projectile);
+            shootAvailableCounter = 0;
         }
     }
     public void damageReaction(){

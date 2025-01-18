@@ -37,7 +37,6 @@ public class Entity {
     String dialogues[] = new String[20];
     int dialogueIndex = 0;
     public BufferedImage image, image1, image2;
-    public String name;
     public boolean collision = false;
     public boolean alive = true;
     public boolean dying = false;
@@ -45,12 +44,19 @@ public class Entity {
     boolean hpBarOn = false;
     int hpBarCounter = 0;
     // life
-    public int maxLife;
-    public int life;
+
 
     boolean attacking = false;
 
+    // COUNTER
+    public int shootAvailableCounter = 0;
     // CHARACTER STATS
+    public String name;
+    public int maxMana;
+    public int maxLife;
+    public int mana;
+    public int ammo;
+    public int life;
     public int level;
     public int strength;
     public int dexterity;
@@ -61,11 +67,13 @@ public class Entity {
     public int coin;
     public Entity currentWeapon;
     public Entity currentShield;
+    public Projectile projectile;
 
     // ITEM ATTRIBUTES
     public int attackValue;
     public int defenseValue;
     public String description = "";
+    public int useCost;
 
     // TYPE
     public int type; // 0 = player 1 = npc 2 = monster
@@ -120,38 +128,17 @@ public class Entity {
         gp.cChecker.checkEntity(this, gp.monster);
         boolean contactPlayer = gp.cChecker.checkPlayer(this);
         if(this.type == type_monster && contactPlayer == true){
-            if(gp.player.invincible == false){
-                //we can give damage
-                gp.playSoundEffect(5);
-                int damage = attack - gp.player.defense;
-                if(damage < 0){
-                    damage = 0;
-                }
-                gp.player.life -= damage;
-
-                gp.player.life -= 1;
-                gp.player.invincible = true;
-            }
+            damagePlayer(attack);
         }
 
         if (collisionOn == false) {
             switch(Direction){
-                case "up":
-                    worldY -= speed;
-                    break;
-                case "down":
-                    worldY += speed;
-                    break;
-                case "left":
-                    worldX -= speed;
-                    break;
-                case "right":
-                    worldX += speed;
-                    break;
+                case "up": worldY -= speed;break;
+                case "down": worldY += speed;break;
+                case "left": worldX -= speed;break;
+                case "right": worldX += speed;break;
             }
         }
-
-
         spriteCounter++;
         if(spriteCounter > 10){
             if(spriteNum ==1){
@@ -170,8 +157,23 @@ public class Entity {
                 invincibleCounter = 0;
             }
         }
+        if(shootAvailableCounter < 30){
+            shootAvailableCounter++;
+        }
+    }
+    public void damagePlayer(int attack){
+        if(gp.player.invincible == false){
+            //we can give damage
+            gp.playSoundEffect(5);
+            int damage = attack - gp.player.defense;
+            if(damage < 0){
+                damage = 0;
+            }
+            gp.player.life -= damage;
 
-
+            gp.player.life -= 1;
+            gp.player.invincible = true;
+        }
     }
 
     public void draw(Graphics2D g2){
@@ -234,7 +236,7 @@ public class Entity {
                 dyingAnimation(g2);
             }
 
-            g2.drawImage(image, screenX, screenY,gp.tileSize,gp.tileSize,null);
+            g2.drawImage(image, screenX, screenY,null);
             changeAlpha(g2, 1F);
         }
     }

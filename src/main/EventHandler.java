@@ -109,8 +109,9 @@ public class EventHandler {
         if(gp.keyH.enterPressed == true){
             gp.player.attackCanceled = true;
             gp.gameState = gameState;
-            gp.ui.currentDialogue = "You get FULL life back!";
+            gp.ui.currentDialogue = "You get FULL life/mana back!";
             gp.player.life = gp.player.maxLife;
+            gp.player.mana = gp.player.maxMana;
             // reset monsters
             gp.aSetter.setMonster();
         }

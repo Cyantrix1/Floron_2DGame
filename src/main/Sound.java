@@ -11,7 +11,7 @@ public class Sound {
     URL soundURL[] = new URL[30];
 
     public Sound(){
-        soundURL[0] = getClass().getClassLoader().getResource("sound/game_level.wav");
+        soundURL[0] = getClass().getClassLoader().getResource("sound/shimmy.wav");
         soundURL[1] = getClass().getClassLoader().getResource("sound/collecting_power_item.wav");
         soundURL[2] = getClass().getClassLoader().getResource("sound/open_sound.wav");
         soundURL[3] = getClass().getClassLoader().getResource("sound/treasure_collect.wav");

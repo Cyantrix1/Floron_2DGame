@@ -5,19 +5,19 @@ import main.GamePanel;
 
 import java.util.Random;
 
-public class MON_Papaya_Isopod extends Entity {
+public class MON_Cappuccino_Isopod extends Entity {
     GamePanel gp;
-    public MON_Papaya_Isopod(GamePanel gp) {
+    public MON_Cappuccino_Isopod(GamePanel gp) {
         super(gp);
         this.gp = gp;
         type = type_monster;
-        name = "Papaya Isopod";
+        name = "Cappuccino Isopod";
         speed = 1;
-        maxLife = 4;
+        maxLife = 8;
         life = maxLife;
-        attack = 5;
-        defense = 0;
-        exp = 2;
+        attack = 10;
+        defense = 2;
+        exp = 4;
 
         solidArea.x = 3;
         solidArea.y = 18;
@@ -29,14 +29,16 @@ public class MON_Papaya_Isopod extends Entity {
         getImage();
     }
     public void getImage() {
-        up1 = setUp("monster/Papaya_Isopod/Papaya_Isopod_Idle_Normal", gp.tileSize, gp.tileSize);
-        up2 = setUp("monster/Papaya_Isopod/Papaya_Isopod_Idle_Normal_1", gp.tileSize, gp.tileSize);
-        down1 = setUp("monster/Papaya_Isopod/Papaya_Isopod_Idle_Normal", gp.tileSize, gp.tileSize);
-        down2 = setUp("monster/Papaya_Isopod/Papaya_Isopod_Idle_Normal_1", gp.tileSize, gp.tileSize);
-        right1 = setUp("monster/Papaya_Isopod/Papaya_Isopod_Idle_Normal", gp.tileSize, gp.tileSize);
-        right2 = setUp("monster/Papaya_Isopod/Papaya_Isopod_Idle_Normal_1", gp.tileSize, gp.tileSize);
-        left1 = setUp("monster/Papaya_Isopod/Papaya_Isopod_Idle_Normal", gp.tileSize, gp.tileSize);
-        left2 = setUp("monster/Papaya_Isopod/Papaya_Isopod_Idle_Normal_1", gp.tileSize, gp.tileSize);
+
+        int i =5;
+        up1 = setUp("monster/Cappuccino_Isopod/Capps_Left_1", gp.tileSize, gp.tileSize);
+        up2 = setUp("monster/Cappuccino_Isopod/Capps_Left_2", gp.tileSize, gp.tileSize);
+        down1 = setUp("monster/Cappuccino_Isopod/Capps_Right_1", gp.tileSize, gp.tileSize);
+        down2 = setUp("monster/Cappuccino_Isopod/Capps_Right_2", gp.tileSize, gp.tileSize);
+        right1 = setUp("monster/Cappuccino_Isopod/Capps_Right_1", gp.tileSize, gp.tileSize);
+        right2 = setUp("monster/Cappuccino_Isopod/Capps_Right_2", gp.tileSize, gp.tileSize);
+        left1 = setUp("monster/Cappuccino_Isopod/Capps_Left_1", gp.tileSize, gp.tileSize);
+        left2 = setUp("monster/Cappuccino_Isopod/Capps_Left_2", gp.tileSize, gp.tileSize);
     }
     public void setAction() {
         actionLockCounter++;

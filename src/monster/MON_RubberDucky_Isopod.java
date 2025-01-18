@@ -5,9 +5,9 @@ import main.GamePanel;
 
 import java.util.Random;
 
-public class MON_Papaya_Isopod extends Entity {
+public class MON_RubberDucky_Isopod extends Entity {
     GamePanel gp;
-    public MON_Papaya_Isopod(GamePanel gp) {
+    public MON_RubberDucky_Isopod(GamePanel gp) {
         super(gp);
         this.gp = gp;
         type = type_monster;
@@ -29,14 +29,14 @@ public class MON_Papaya_Isopod extends Entity {
         getImage();
     }
     public void getImage() {
-        up1 = setUp("monster/Papaya_Isopod/Papaya_Isopod_Idle_Normal", gp.tileSize, gp.tileSize);
-        up2 = setUp("monster/Papaya_Isopod/Papaya_Isopod_Idle_Normal_1", gp.tileSize, gp.tileSize);
-        down1 = setUp("monster/Papaya_Isopod/Papaya_Isopod_Idle_Normal", gp.tileSize, gp.tileSize);
-        down2 = setUp("monster/Papaya_Isopod/Papaya_Isopod_Idle_Normal_1", gp.tileSize, gp.tileSize);
-        right1 = setUp("monster/Papaya_Isopod/Papaya_Isopod_Idle_Normal", gp.tileSize, gp.tileSize);
-        right2 = setUp("monster/Papaya_Isopod/Papaya_Isopod_Idle_Normal_1", gp.tileSize, gp.tileSize);
-        left1 = setUp("monster/Papaya_Isopod/Papaya_Isopod_Idle_Normal", gp.tileSize, gp.tileSize);
-        left2 = setUp("monster/Papaya_Isopod/Papaya_Isopod_Idle_Normal_1", gp.tileSize, gp.tileSize);
+        up1 = setUp("monster/RubberDucky_Isopod/Rubb_Left_1", gp.tileSize, gp.tileSize);
+        up2 = setUp("monster/RubberDucky_Isopod/Rubb_Left_2", gp.tileSize, gp.tileSize);
+        down1 = setUp("monster/RubberDucky_Isopod/Rubb_Right_1", gp.tileSize, gp.tileSize);
+        down2 = setUp("monster/RubberDucky_Isopod/Rubb_Right_2", gp.tileSize, gp.tileSize);
+        right1 = setUp("monster/RubberDucky_Isopod/Rubb_Right_1", gp.tileSize, gp.tileSize);
+        right2 = setUp("monster/RubberDucky_Isopod/Rubb_Right_2", gp.tileSize, gp.tileSize);
+        left1 = setUp("monster/RubberDucky_Isopod/Rubb_Left_1", gp.tileSize, gp.tileSize);
+        left2 = setUp("monster/RubberDucky_Isopod/Rubb_Left_2", gp.tileSize, gp.tileSize);
     }
     public void setAction() {
         actionLockCounter++;

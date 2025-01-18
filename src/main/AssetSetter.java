@@ -1,7 +1,9 @@
 package main;
 
 import entity.NPC_Wanderer;
+import monster.MON_Cappuccino_Isopod;
 import monster.MON_Papaya_Isopod;
+import monster.MON_RubberDucky_Isopod;
 import objects.*;
 
 public class AssetSetter {
@@ -59,6 +61,15 @@ public class AssetSetter {
         gp.monster[i] = new MON_Papaya_Isopod(gp);
         gp.monster[i].worldX = gp.tileSize*28;
         gp.monster[i].worldY = gp.tileSize*22;
+        i++;
+        gp.monster[i] = new MON_Cappuccino_Isopod(gp);
+        gp.monster[i].worldX = gp.tileSize*40;
+        gp.monster[i].worldY = gp.tileSize*22;
+        i++;
+        gp.monster[i] = new MON_RubberDucky_Isopod(gp);
+        gp.monster[i].worldX = gp.tileSize*42;
+        gp.monster[i].worldY = gp.tileSize*22;
+
 
     }
 }

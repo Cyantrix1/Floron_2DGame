@@ -4,6 +4,7 @@ package main;
 import entity.Entity;
 import entity.Player;
 import tile.TileManager;
+import tile_iteractive.InteractiveTile;
 
 // import needed libraries
 import javax.swing.JPanel;
@@ -69,6 +70,8 @@ public class GamePanel extends JPanel implements Runnable{
     public Entity monster[] = new Entity[30];
     ArrayList<Entity> entityList = new ArrayList<>();
     public ArrayList<Entity> projectileList = new ArrayList<>();
+    public InteractiveTile iTile[] = new InteractiveTile[30];
+    public ArrayList<Entity> particleList = new ArrayList<>();
 
     //GAME STATE
     public int  gameState;
@@ -97,6 +100,7 @@ public class GamePanel extends JPanel implements Runnable{
         aSetter.setObject();
         aSetter.setNPC();
         aSetter.setMonster();
+        aSetter.setiTile();
        // playMusic(0);
        // stopMusic();
         gameState = titleState;
@@ -178,6 +182,21 @@ public class GamePanel extends JPanel implements Runnable{
                     }
                 }
             }
+            for(int i = 0; i < particleList.size();i++){
+                if(particleList.get(i) != null){
+                    if(particleList.get(i).alive == true){
+                        particleList.get(i).update();
+                    }
+                    if (particleList.get(i).alive == false) {
+                        particleList.remove(i);
+                    }
+                }
+            }
+            for(int i = 0; i < iTile.length; i++){
+                if(iTile[i] != null){
+                    iTile[i].update();
+                }
+            }
         }
         if(gameState == pauseState){
             //nothing
@@ -202,7 +221,12 @@ public class GamePanel extends JPanel implements Runnable{
         else{
             // draw the tiles
             tileM.draw(g2);
-
+            // INTERACTIVE TILES
+            for(int i = 0; i < iTile.length; i++){
+                if(iTile[i] != null){
+                    iTile[i].draw(g2);
+                }
+            }
             // ADD ENTITIES: PLAYER
             entityList.add(player);
 
@@ -212,7 +236,6 @@ public class GamePanel extends JPanel implements Runnable{
                     entityList.add(npc[i]);
                 }
             }
-
             // OBJ OBJECT
             for(int i = 0; i < obj.length; i++){
                 if(obj[i] != null){
@@ -229,6 +252,12 @@ public class GamePanel extends JPanel implements Runnable{
             for(int i = 0; i < projectileList.size(); i++){
                 if(projectileList.get(i) != null){
                     entityList.add(projectileList.get(i));
+                }
+            }
+            // OBJ PARTICLES
+            for(int i = 0; i < particleList.size(); i++){
+                if(particleList.get(i) != null){
+                    entityList.add(particleList.get(i));
                 }
             }
 

@@ -5,6 +5,7 @@ import monster.MON_Cappuccino_Isopod;
 import monster.MON_Papaya_Isopod;
 import monster.MON_RubberDucky_Isopod;
 import objects.*;
+import tile_iteractive.IT_DryTree;
 
 public class AssetSetter {
     GamePanel gp;
@@ -47,6 +48,10 @@ public class AssetSetter {
         gp.obj[i].worldX = gp.tileSize*38;
         gp.obj[i].worldY = gp.tileSize*32;
         i++;
+        gp.obj[i] = new OBJ_ChopAxe(gp);
+        gp.obj[i].worldX = gp.tileSize*29;
+        gp.obj[i].worldY = gp.tileSize*19;
+        i++;
 
     }
 
@@ -77,7 +82,10 @@ public class AssetSetter {
         gp.monster[i] = new MON_RubberDucky_Isopod(gp);
         gp.monster[i].worldX = gp.tileSize*42;
         gp.monster[i].worldY = gp.tileSize*22;
-
+    }
+    public void setiTile(){
+        int i = 0;
+        gp.iTile[i] = new IT_DryTree(gp, 10, 10); i++;
 
     }
 }

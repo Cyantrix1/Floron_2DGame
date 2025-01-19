@@ -160,6 +160,9 @@ public class Player extends Entity{
             // CHECK  MONSTER COLLISION
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
             contactMonster(monsterIndex);
+
+            // CHECK INTERACTIVE TILE COLLISION
+            int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
             // CHECK EVENT
             gp.eHandler.checkEvent();
 
@@ -252,6 +255,10 @@ public class Player extends Entity{
             // check monster collision with the updated world X, worldY, and solid area
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
             damageMonster(monsterIndex, attack);
+
+            int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
+            damageInteractiveTile(iTileIndex);
+
             worldX = currentWorldX;
             worldY = currentWorldY;
             solidArea.width = solidAreaWidth;
@@ -341,7 +348,19 @@ public class Player extends Entity{
             }
         }
     }
-
+    public void damageInteractiveTile(int i){
+        if(i != 999 && gp.iTile[i].destructible == true && gp.iTile[i].isCorrectItem(this) == true
+        && gp.iTile[i].invincible == false){
+            gp.iTile[i].playSoundEffect();
+            gp.iTile[i].life--;
+            gp.iTile[i].invincible = true;
+            // generate particle
+            generateParticle(gp.iTile[i], gp.iTile[i]);
+            if(gp.iTile[i].life == 0){
+                gp.iTile[i] = gp.iTile[i].getDestroyedForm();
+            }
+        }
+    }
     public void checkLevelUp(){
         if(exp >= nextLevelExp){
             level++;

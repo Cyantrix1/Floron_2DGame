@@ -2,6 +2,10 @@ package monster;
 
 import entity.Entity;
 import main.GamePanel;
+import objects.OBJ_BronzeCoin;
+import objects.OBJ_Heart;
+import objects.OBJ_ManaCrystal;
+import objects.OBJ_OP_Axe;
 
 import java.util.Random;
 
@@ -61,5 +65,23 @@ public class MON_Papaya_Isopod extends Entity {
     public void damageReaction(){
         actionLockCounter = 0;
         Direction = gp.player.Direction;
+    }
+    public void checkDrop(){
+        // cast a die
+        int i = new Random().nextInt(100)+1;
+
+        // set the monster drop
+        if(i < 50 && i >= 1){
+            dropItem(new OBJ_BronzeCoin(gp));
+        }
+        if(i>=50 && i<75){
+            dropItem(new OBJ_Heart(gp));
+        }
+        if(i>=75 && i < 100){
+            dropItem(new OBJ_ManaCrystal(gp));
+        }
+        if(i == 0){
+            dropItem(new OBJ_OP_Axe(gp));
+        }
     }
 }

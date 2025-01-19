@@ -102,8 +102,8 @@ public class Player extends Entity{
         life = maxLife;
         currentWeapon = new OBJ_Sword_Basic(gp);
         currentShield = new OBJ_Shield_Wood(gp);
-        //projectile = new OBJ_Fireball(gp);
-        projectile = new OBJ_Rock(gp);
+        projectile = new OBJ_Fireball(gp);
+        //projectile = new OBJ_Rock(gp);
         attack = getAttack();
         defense = getDefense();
 
@@ -216,6 +216,12 @@ public class Player extends Entity{
         if(shootAvailableCounter < 30){
             shootAvailableCounter++;
         }
+        if(life > maxLife){
+            life = maxLife;
+        }
+        if(mana > maxMana){
+            mana = maxMana;
+        }
 
     }
 
@@ -260,21 +266,27 @@ public class Player extends Entity{
     }
     public void pickUpObject(int i){
         if(i != 999){
-
-            String text;
-
-            if(inventory.size() != inventorySize){
-                inventory.add(gp.obj[i]);
-                gp.playSoundEffect(1);
-                text = "Got a " + gp.obj[i].name +"!";
-
+            // PICKUP ONLY ITEMS
+            if(gp.obj[i].type == type_pickupOnly){
+                gp.obj[i].use(this);
+                gp.obj[i] = null;
             }
+            // INVENTORY ITEMS
             else{
-                text = "You can't carry anymore!";
+                String text;
+                if(inventory.size() != inventorySize){
+                    inventory.add(gp.obj[i]);
+                    gp.playSoundEffect(1);
+                    text = "Got a " + gp.obj[i].name +"!";
+
+                }
+                else{
+                    text = "You can't carry anymore!";
+                }
+                gp.ui.addMessage(text);
+                gp.obj[i] = null;
             }
-            gp.ui.addMessage(text);
-            gp.obj[i] = null;
-        }
+            }
     }
     public void interactNPC(int i){
         if(gp.keyH.enterPressed == true){

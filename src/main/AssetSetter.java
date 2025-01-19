@@ -39,6 +39,14 @@ public class AssetSetter {
         gp.obj[i].worldX = gp.tileSize*32;
         gp.obj[i].worldY = gp.tileSize*19;
         i++;
+        gp.obj[i] = new OBJ_ManaCrystal(gp);
+        gp.obj[i].worldX = gp.tileSize*37;
+        gp.obj[i].worldY = gp.tileSize*32;
+        i++;
+        gp.obj[i] = new OBJ_Heart(gp);
+        gp.obj[i].worldX = gp.tileSize*38;
+        gp.obj[i].worldY = gp.tileSize*32;
+        i++;
 
     }
 

@@ -156,6 +156,9 @@ public class UI {
     }
     public void drawTitleScreen(){
 
+        g2.setColor(new Color(0,0,0));
+        g2.fillRect(0,0,gp.screenWidth,gp.screenHeight);
+
         if (titleScreenState == 0){
 
             // BACKGROUND COLOR
@@ -297,7 +300,7 @@ public class UI {
     public void drawCharacterScreen(){
 
         // CREATE A FRAME
-        final int frameX = gp.tileSize;
+        final int frameX = gp.tileSize*2;
         final int frameY = gp.tileSize;
         final int frameWidth = gp.tileSize *5;
         final int frameHeight = gp.tileSize*10;
@@ -404,7 +407,7 @@ public class UI {
     }
     public void drawInventory(){
         // FRAME
-        int frameX = gp.tileSize*9;
+        int frameX = gp.tileSize*12;
         int frameY = gp.tileSize;
         int frameWidth = gp.tileSize*6;
         int frameHeight = gp.tileSize*5;

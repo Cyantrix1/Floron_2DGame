@@ -4,16 +4,19 @@ package main;
 import javax.swing.JFrame;
 
 public class Main {
+
+   public static  JFrame screen;
     public static void main(String[] args) {
 
        // create new game frame
-       JFrame screen = new JFrame();
+       screen = new JFrame();
        // make sure that when we hit the X to close the game the program stops running
        screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
        // don't allow the program to resize
        screen.setResizable(false);
        // set title of the program
        screen.setTitle("2D Project: Floron");
+       screen.setUndecorated(true);
 
        // get a new game panel
        GamePanel gamePanel = new GamePanel();

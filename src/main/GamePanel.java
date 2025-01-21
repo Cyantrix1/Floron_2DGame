@@ -32,11 +32,13 @@ public class GamePanel extends JPanel implements Runnable{
     // WORLD SETTINGS
     public final int maxWorldCol = 50;
     public final int maxWorldRow = 50;
+
     // FULL SCREEN
     int screenWidth2 = screenWidth;
     int screenHeight2 = screenHeight;
     BufferedImage tempScreen;
     Graphics2D g2;
+    public boolean fullScreenOn = false;
 
 
     // set FPS to 60
@@ -51,6 +53,7 @@ public class GamePanel extends JPanel implements Runnable{
     // SOUND
     Sound sound = new Sound();
     Sound se = new Sound();
+    public Sound music = new Sound();
 
     // COLLISION CHECKER
     public CollisionChecker cChecker = new CollisionChecker(this);
@@ -86,6 +89,7 @@ public class GamePanel extends JPanel implements Runnable{
     public final int pauseState = 2;
     public final int dialogueState = 3;
     public final int characterState = 4;
+    public final int optionsState = 5;
 
 
     // constructor for our game panel

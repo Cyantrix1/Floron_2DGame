@@ -108,7 +108,20 @@ public class Player extends Entity{
         defense = getDefense();
 
     }
+    public void setDefaultPositions(){
+        worldX = gp.tileSize * 25;
+        worldY = gp.tileSize * 25;
+        Direction = "down";
+    }
+    public void restoreLifeAndMana(){
+        life = maxLife;
+        mana = maxMana;
+        invincible = false;
+    }
+    // default items the player gets
     public void setItems(){
+
+        inventory.clear();
         inventory.add(currentWeapon);
         inventory.add(currentShield);
         inventory.add(new OBJ_Key(gp));
@@ -224,6 +237,10 @@ public class Player extends Entity{
         }
         if(mana > maxMana){
             mana = maxMana;
+        }
+        if(life <= 0){
+            gp.gameState = gp.gameOverState;
+            gp.playSoundEffect(10);
         }
 
     }

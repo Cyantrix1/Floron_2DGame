@@ -9,7 +9,7 @@ import javax.sound.sampled.FloatControl;
 public class Sound {
 
     Clip clip;
-    URL soundURL[] = new URL[30];
+    URL soundURL[] = new URL[20];
     FloatControl fc;
     int volumeScale = 3;
     float volume;
@@ -25,19 +25,22 @@ public class Sound {
         soundURL[7] = getClass().getClassLoader().getResource("sound/levelUp.wav");
         soundURL[8] = getClass().getClassLoader().getResource("sound/cursor.wav");
         soundURL[9] = getClass().getClassLoader().getResource("sound/burning.wav");
-
+        soundURL[10] = getClass().getClassLoader().getResource("sound/gameover.wav");
+        soundURL[11] = getClass().getClassLoader().getResource("sound/shimmy.wav");
 
     }
-
-    public void setFile(int i){
-        try{
+    public void setFile(int i) {
+        try {
+            if (soundURL[i] == null) {
+                System.err.println("Sound file not found for index: " + i);
+                return;
+            }
             AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL[i]);
             clip = AudioSystem.getClip();
             clip.open(ais);
-            fc = (FloatControl)clip.getControl(FloatControl.Type.MASTER_GAIN);
+            fc = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
             checkVolume();
-
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -51,6 +54,10 @@ public class Sound {
         clip.stop();
     }
     public void checkVolume(){
+        if (fc == null) {
+            System.err.println("Volume control not initialized. Cannot set volume.");
+            return;
+        }
         switch(volumeScale){
             case 0: volume = -80f; break;
             case 1: volume = -20f;break;
@@ -61,4 +68,5 @@ public class Sound {
         }
         fc.setValue(volume);
     }
+
 }

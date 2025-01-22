@@ -16,12 +16,16 @@ public class Main {
        screen.setResizable(false);
        // set title of the program
        screen.setTitle("2D Project: Floron");
-       screen.setUndecorated(true);
 
        // get a new game panel
        GamePanel gamePanel = new GamePanel();
        // add to the JFrame
        screen.add(gamePanel);
+
+       gamePanel.config.loadConfig();
+       if(gamePanel.fullScreenOn == true){
+          screen.setUndecorated(true);
+       }
 
        // causes the Window to be sized to fit the preferred size and layouts of its subcomponents
        screen.pack();

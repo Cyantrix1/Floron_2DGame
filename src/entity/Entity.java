@@ -6,6 +6,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 // this class is the super class that all other entities will implement
@@ -75,6 +76,9 @@ public class Entity {
     public String description = "";
     public int useCost;
     public int value;
+    public ArrayList<Entity> inventory = new ArrayList<>();
+    public final int inventorySize = 20;
+    public int price;
 
     // TYPE
     public int type; // 0 = player 1 = npc 2 = monster
@@ -187,7 +191,7 @@ public class Entity {
             }
         }
         spriteCounter++;
-        if(spriteCounter > 10){
+        if(spriteCounter > 24){
             if(spriteNum ==1){
                 spriteNum = 2;;
             }

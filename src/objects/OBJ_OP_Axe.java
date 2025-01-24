@@ -14,6 +14,7 @@ public class OBJ_OP_Axe extends Entity{
         attackArea.width = 30;
         attackArea.height = 30;
         description = "[" + name + "]\nAn overpowered Axe \nEvil doers beware!";
+        price = 75;
     }
 
 }

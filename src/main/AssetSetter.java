@@ -1,5 +1,6 @@
 package main;
 
+import entity.NPC_Trader;
 import entity.NPC_Wanderer;
 import monster.MON_Cappuccino_Isopod;
 import monster.MON_Papaya_Isopod;
@@ -64,6 +65,11 @@ public class AssetSetter {
         gp.npc[mapNum][i] = new NPC_Wanderer(gp);
         gp.npc[mapNum][i].worldX = gp.tileSize * 27;
         gp.npc[mapNum][i].worldY = gp.tileSize * 23;
+        i++;
+        mapNum = 1;
+        gp.npc[mapNum][i] = new NPC_Trader(gp);
+        gp.npc[mapNum][i].worldX = gp.tileSize * 28;
+        gp.npc[mapNum][i].worldY = gp.tileSize * 24;
     }
     public void setMonster(){
         int mapNum = 0;

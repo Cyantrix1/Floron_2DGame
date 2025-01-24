@@ -33,14 +33,14 @@ public class MON_Cappuccino_Isopod extends Entity {
     public void getImage() {
 
         int i =5;
-        up1 = setUp("monster/Cappuccino_Isopod/Capps_Left_1", gp.tileSize, gp.tileSize);
-        up2 = setUp("monster/Cappuccino_Isopod/Capps_Left_2", gp.tileSize, gp.tileSize);
-        down1 = setUp("monster/Cappuccino_Isopod/Capps_Right_1", gp.tileSize, gp.tileSize);
-        down2 = setUp("monster/Cappuccino_Isopod/Capps_Right_2", gp.tileSize, gp.tileSize);
-        right1 = setUp("monster/Cappuccino_Isopod/Capps_Right_1", gp.tileSize, gp.tileSize);
-        right2 = setUp("monster/Cappuccino_Isopod/Capps_Right_2", gp.tileSize, gp.tileSize);
-        left1 = setUp("monster/Cappuccino_Isopod/Capps_Left_1", gp.tileSize, gp.tileSize);
-        left2 = setUp("monster/Cappuccino_Isopod/Capps_Left_2", gp.tileSize, gp.tileSize);
+        up1 = setUp("monster/Cappuccino_Isopod/Capps_Left_1", gp.tileSize*3, gp.tileSize*3);
+        up2 = setUp("monster/Cappuccino_Isopod/Capps_Left_2", gp.tileSize*3, gp.tileSize*3);
+        down1 = setUp("monster/Cappuccino_Isopod/Capps_Right_1", gp.tileSize*3, gp.tileSize*3);
+        down2 = setUp("monster/Cappuccino_Isopod/Capps_Right_2", gp.tileSize*3, gp.tileSize*3);
+        right1 = setUp("monster/Cappuccino_Isopod/Capps_Right_1", gp.tileSize*3, gp.tileSize*3);
+        right2 = setUp("monster/Cappuccino_Isopod/Capps_Right_2", gp.tileSize*3, gp.tileSize*3);
+        left1 = setUp("monster/Cappuccino_Isopod/Capps_Left_1", gp.tileSize*3, gp.tileSize*3);
+        left2 = setUp("monster/Cappuccino_Isopod/Capps_Left_2", gp.tileSize*3, gp.tileSize*3);
     }
     public void setAction() {
         actionLockCounter++;

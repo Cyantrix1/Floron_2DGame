@@ -17,8 +17,7 @@ public class Player extends Entity{
     public final int screenX;
     public final int screenY;
     public boolean attackCanceled = false;
-    public ArrayList<Entity> inventory = new ArrayList<>();
-    public final int inventorySize = 20;
+
 
     // create the player that takes in gp and keyH (gp will say where the player is and keyH will be what the user inputs)
     // constructor
@@ -94,7 +93,7 @@ public class Player extends Entity{
         dexterity = 1;
         exp = 0;
         nextLevelExp = 5;
-        coin = 0;
+        coin = 500;
         maxLife = 6;
         maxMana = 4;
         ammo = 10;
@@ -396,7 +395,7 @@ public class Player extends Entity{
         }
     }
     public void selectItem(){
-        int itemIndex = gp.ui.getItemIndexOnSlot();
+        int itemIndex = gp.ui.getItemIndexOnSlot(gp.ui.playerSlotCol, gp.ui.playerSlotRow);
 
         if(itemIndex < inventory.size()){
             Entity selectedItem = inventory.get(itemIndex);

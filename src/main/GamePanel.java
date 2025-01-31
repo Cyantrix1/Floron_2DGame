@@ -1,6 +1,7 @@
 package main;
 
 // import our .png files
+import ai.PathFinder;
 import entity.Entity;
 import entity.Player;
 import tile.TileManager;
@@ -47,7 +48,7 @@ public class GamePanel extends JPanel implements Runnable{
     int FPS = 60;
 
     // create a new TileManager
-    TileManager tileM = new TileManager(this);
+    public TileManager tileM = new TileManager(this);
 
     // create a new key handler to get in input
     public KeyHandler keyH = new KeyHandler(this);
@@ -74,6 +75,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     // CREATE NEW PLAYER
     public Player player = new Player(this, keyH);
+    public PathFinder pFinder = new PathFinder(this);
 
 
     //ENTITY AND OBJECT

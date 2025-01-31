@@ -46,7 +46,7 @@ public class Entity {
     int hpBarCounter = 0;
     // life
 
-
+    public boolean onPath = false;
     boolean attacking = false;
 
     // COUNTER
@@ -167,10 +167,7 @@ public class Entity {
 
     public void use(Entity entity){}
 
-
-    public void update(){
-        setAction();
-
+    public void checkCollision(){
         collisionOn = false;
         gp.cChecker.checkTile(this);
         gp.cChecker.checkObject(this, false);
@@ -181,6 +178,13 @@ public class Entity {
         if(this.type == type_monster && contactPlayer == true){
             damagePlayer(attack);
         }
+
+    }
+
+    public void update(){
+        setAction();
+        checkCollision();
+
 
         if (collisionOn == false) {
             switch(Direction){
@@ -325,5 +329,70 @@ public class Entity {
             e.printStackTrace();
         }
         return image;
+    }
+    public void searchPath(int goalCol, int goalRow){
+        int startCol = (worldX + solidArea.x)/gp.tileSize;
+        int startRow = (worldY + solidArea.y)/gp.tileSize;
+
+        gp.pFinder.setNodes(startCol, startRow, goalCol, goalRow);
+
+        if(gp.pFinder.search() == true){
+            //
+            int nextX = gp.pFinder.pathList.get(0).col * gp.tileSize;
+            int nextY = gp.pFinder.pathList.get(0).row * gp.tileSize;
+            // Entitiy's solidArea Position
+            int enLeftX = worldX + solidArea.x;
+            int enRightX = worldX + solidArea.x + solidArea.width;
+            int enTopY = worldY + solidArea.y;
+            int enBottomY = worldY+solidArea.y + solidArea.height;
+
+            if(enTopY > nextY && enLeftX >= nextX && enRightX < nextX + gp.tileSize){
+                Direction = "up";
+            }
+            else if(enTopY < nextY && enLeftX >= nextX && enRightX < nextX +gp.tileSize){
+                Direction = "down";
+            }
+            else if (enTopY >= nextY && enBottomY <  nextY + gp.tileSize){
+                if(enLeftX > nextX){
+                    Direction = "left";
+                }
+                if(enLeftX < nextX){
+                    Direction = "right";
+                }
+            }
+            else if(enTopY> nextY && enLeftX > nextX){
+                Direction = "up";
+                checkCollision();
+                if(collisionOn == true){
+                    Direction = "left";
+                }
+            }
+            else if(enTopY > nextY && enLeftX < nextX){
+                Direction = "up";
+                checkCollision();
+                if(collisionOn == true){
+                    Direction = "right";
+                }
+            }
+            else if(enTopY < nextY && enLeftX > nextX){
+                Direction = "down";
+                if(collisionOn == true){
+                    Direction = "left";
+                }
+            }
+            else if(enTopY < nextY && enLeftX < nextX){
+                Direction = "down";
+                if(collisionOn == true){
+                    Direction = "right";
+                }
+            }
+            // If it reaches the goal, stop the search
+            // omit this if you want the entity to follow you
+          //  int nextCol = gp.pFinder.pathList.get(0).col;
+           // int nextRow = gp.pFinder.pathList.get(0).row;
+           // if(nextCol == goalCol && nextRow == goalRow){
+             //   onPath = false;
+           // }
+        }
     }
 }

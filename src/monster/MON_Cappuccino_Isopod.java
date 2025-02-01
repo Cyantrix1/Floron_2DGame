@@ -13,7 +13,8 @@ public class MON_Cappuccino_Isopod extends Entity {
         this.gp = gp;
         type = type_monster;
         name = "Cappuccino Isopod";
-        speed = 1;
+        defaultSpeed = 1;
+        speed = defaultSpeed;
         maxLife = 8;
         life = maxLife;
         attack = 10;
@@ -70,8 +71,16 @@ public class MON_Cappuccino_Isopod extends Entity {
             searchPath(goalCol, goalRow);
             int i = new Random().nextInt(200)+1;
             if (i > 197 && projectile.alive == false && shootAvailableCounter == 30){
+
                 projectile.set(worldX, worldY, Direction, true, this);
-                gp.projectileList.add(projectile);
+
+                for(int ii = 0; ii < gp.projectile[1].length; ii++){
+                    if(gp.projectile[gp.currentMap][ii] == null){
+                        gp.projectile[gp.currentMap][ii] = projectile;
+                        break;
+                    }
+                }
+
                 shootAvailableCounter = 0;
             }
         }

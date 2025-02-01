@@ -33,7 +33,7 @@ public class GamePanel extends JPanel implements Runnable{
     // WORLD SETTINGS
     public final int maxWorldCol = 50;
     public final int maxWorldRow = 50;
-    public final int maxMap = 10;
+    public final int maxMap = 50;
     public int currentMap = 0;
 
     // FULL SCREEN
@@ -84,7 +84,8 @@ public class GamePanel extends JPanel implements Runnable{
     public Entity monster[][] = new Entity[maxMap][30];
     public InteractiveTile iTile[][] = new InteractiveTile[maxMap][30];
     ArrayList<Entity> entityList = new ArrayList<>();
-    public ArrayList<Entity> projectileList = new ArrayList<>();
+    public Entity projectile[][] = new Entity[maxMap][20];
+    //public ArrayList<Entity> projectileList = new ArrayList<>();
     public ArrayList<Entity> particleList = new ArrayList<>();
 
     //GAME STATE
@@ -217,13 +218,13 @@ public class GamePanel extends JPanel implements Runnable{
                     }
                 }
             }
-            for(int i = 0; i < projectileList.size();i++){
-                if(projectileList.get(i) != null){
-                    if(projectileList.get(i).alive == true){
-                        projectileList.get(i).update();
+            for(int i = 0; i < projectile[1].length;i++){
+                if(projectile[currentMap][i] != null){
+                    if(projectile[currentMap][i].alive == true){
+                        projectile[currentMap][i].update();
                     }
-                    if (projectileList.get(i).alive == false) {
-                        projectileList.remove(i);
+                    if (projectile[currentMap][i].alive == false) {
+                        projectile[currentMap][i] = null;
                     }
                 }
             }
@@ -290,9 +291,9 @@ public class GamePanel extends JPanel implements Runnable{
                 }
             }
             // OBJ PROJECTILES
-            for(int i = 0; i < projectileList.size(); i++){
-                if(projectileList.get(i) != null){
-                    entityList.add(projectileList.get(i));
+            for(int i = 0; i < projectile[1].length; i++){
+                if(projectile[currentMap][i] != null){
+                    entityList.add(projectile[currentMap][i]);
                 }
             }
             // OBJ PARTICLES

@@ -16,10 +16,11 @@ public class OBJ_Potion_Health extends Entity {
         description = "[" + name + "]\nA Health Potion\nHeals " + value + ".";
         price = 1;
     }
-    public void use(Entity entity){
+    public boolean use(Entity entity){
         gp.gameState = gp.dialogueState;
         gp.ui.currentDialogue = "You drink the " + name + "!\n" + "Your life has been recovered by " + value + ".";
         entity.life += value;
         gp.playSoundEffect(2);
+        return true;
     }
 }

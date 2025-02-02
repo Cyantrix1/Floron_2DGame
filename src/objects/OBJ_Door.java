@@ -7,9 +7,11 @@ import javax.imageio.ImageIO;
 import java.io.IOException;
 
 public class OBJ_Door extends Entity {
-
+    GamePanel gp;
     public OBJ_Door(GamePanel gp) {
         super(gp);
+        this.gp = gp;
+        type = type_obstacle;
         name = "Door";
         down1 = setUp("objects/structure/Door", gp.tileSize, gp.tileSize);
 
@@ -24,5 +26,9 @@ public class OBJ_Door extends Entity {
 
 
 
+    }
+    public void interact(){
+        gp.gameState = gp.dialogueState;
+        gp.ui.currentDialogue = "You need a key to open this.";
     }
 }

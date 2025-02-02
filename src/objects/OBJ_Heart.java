@@ -21,9 +21,10 @@ public class OBJ_Heart extends Entity {
         image2 = setUp("objects/stats/Empty_heart", gp.tileSize, gp.tileSize);
 
     }
-    public void use(Entity entity){
+    public boolean use(Entity entity){
         gp.playSoundEffect(2);
         gp.ui.addMessage("Life +" + value);
         entity.life += value;
+        return true;
     }
 }

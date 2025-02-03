@@ -473,6 +473,24 @@ public class UI {
             }
 
             g2.drawImage(entity.inventory.get(i).down1, slotX, slotY, null);
+
+            //DISPLAY AMOUNT
+            if(entity == gp.player && entity.inventory.get(i).amount > 1){
+                g2.setFont(g2.getFont().deriveFont(32f));
+                int amountX;
+                int amountY;
+                String s = ""+ entity.inventory.get(i).amount;
+                amountX = getXforAlignToRightText(s, slotX +44);
+                amountY = slotY+gp.tileSize;
+
+
+                // SHADOW
+                g2.setColor(new Color(60,60,60));
+                g2.drawString(s, amountX, amountY);
+                // NUMBER
+                g2.setColor(Color.white);
+                g2.drawString(s, amountX-3, amountY-3);
+            }
             slotX+=slotSize;
             if(i == 4 || i == 9 || i == 14){
                 slotX = slotXstart;
@@ -868,7 +886,7 @@ public class UI {
             String text = ""+price;
             x = getXforAlignToRightText(text, gp.tileSize*8-20);
             g2.drawString(text,x,y+34);
-
+            // buy an item
             if(gp.keyH.enterPressed == true){
                 if(trader.inventory.get(itemIndex).price > gp.player.coin){
                     subState = 0;
@@ -876,14 +894,15 @@ public class UI {
                     currentDialogue = "Not Enough MONEY!!!";
                     drawDialogueScreen();
                 }
-                else if(gp.player.inventory.size() == gp.player.inventorySize){
-                    subState =0;
-                    gp.gameState = gp.dialogueState;
-                    currentDialogue = "Not Enough SPACE!!!!";
-                }
                 else{
-                    gp.player.coin -= trader.inventory.get(itemIndex).price;
-                    gp.player.inventory.add(trader.inventory.get(itemIndex));
+                    if(gp.player.canObtainItem(trader.inventory.get(itemIndex)) == true){
+                        gp.player.coin -= trader.inventory.get(itemIndex).price;
+                    }
+                    else{
+                        subState =0;
+                        gp.gameState = gp.dialogueState;
+                        currentDialogue = "Not Enough SPACE!!!!";
+                    }
                 }
             }
         }
@@ -935,7 +954,12 @@ public class UI {
                     currentDialogue = "You can't sell an equipped item";
                 }
                 else{
-                    gp.player.inventory.remove(itemIndex);
+                    if(gp.player.inventory.get(itemIndex).amount > 1){
+                        gp.player.inventory.get(itemIndex).amount--;
+                    }
+                    else{
+                        gp.player.inventory.remove(itemIndex);
+                    }
                     gp.player.coin+=price;
                 }
             }

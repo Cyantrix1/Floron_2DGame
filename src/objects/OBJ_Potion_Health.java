@@ -15,6 +15,7 @@ public class OBJ_Potion_Health extends Entity {
         down1 = setUp("objects/consumables/health_potion", gp.tileSize, gp.tileSize);
         description = "[" + name + "]\nA Health Potion\nHeals " + value + ".";
         price = 1;
+        stackable = true;
     }
     public boolean use(Entity entity){
         gp.gameState = gp.dialogueState;

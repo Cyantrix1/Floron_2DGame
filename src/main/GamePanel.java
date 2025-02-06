@@ -4,6 +4,7 @@ package main;
 import ai.PathFinder;
 import entity.Entity;
 import entity.Player;
+import environment.EnvironmentManager;
 import tile.TileManager;
 import tile_iteractive.InteractiveTile;
 
@@ -42,6 +43,7 @@ public class GamePanel extends JPanel implements Runnable{
     BufferedImage tempScreen;
     Graphics2D g2;
     public boolean fullScreenOn = false;
+    EnvironmentManager eManager = new EnvironmentManager(this);
 
 
     // set FPS to 60
@@ -120,6 +122,7 @@ public class GamePanel extends JPanel implements Runnable{
         aSetter.setNPC();
         aSetter.setMonster();
         aSetter.setiTile();
+        eManager.setup();
        // playMusic(0);
        // stopMusic();
         gameState = titleState;
@@ -323,6 +326,9 @@ public class GamePanel extends JPanel implements Runnable{
             }
             //EMPTY ENTITY LIST
             entityList.clear();
+
+            // ENVIRONMENT
+            eManager.draw(g2);
 
             // UI
             ui.draw(g2);
